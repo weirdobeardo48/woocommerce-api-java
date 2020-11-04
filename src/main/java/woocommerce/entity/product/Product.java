@@ -337,7 +337,7 @@ public class Product {
 
         }
 
-        public Builder dateOnsaelToGMT(Date val) {
+        public Builder dateOnSaleToGMT(Date val) {
             dateOnSaleToGMT = val;
             return this;
 
