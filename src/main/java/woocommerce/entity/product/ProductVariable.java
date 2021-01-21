@@ -1,8 +1,9 @@
 package woocommerce.entity.product;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gnu.trove.list.array.TIntArrayList;
+import woocommerce.annotation.JsonElement;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -15,15 +16,24 @@ public class ProductVariable extends Product {
      * Reference: https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      */
 
-    private final boolean featured;
-    private final List<ProductCategory> categories;
-    private final List<ProductDefaultAttribute> defaultAttributes;
-    private final String averageRating;
-    private final String buttonText;
-    private final String catalogVisibility;
-    private final String externalURL;
-    private final TIntArrayList crossSellIds;
-    private final TIntArrayList groupedProducts;
+    @JsonElement(key = "featured")
+    private boolean featured;
+    @JsonElement(key = "categories")
+    private List<ProductCategory> categories;
+    @JsonElement(key = "default_attributes")
+    private List<ProductDefaultAttribute> defaultAttributes;
+    @JsonElement(key = "average_rating")
+    private String averageRating;
+    @JsonElement(key = "button_text")
+    private String buttonText;
+    @JsonElement(key = "catalog_visibility")
+    private String catalogVisibility;
+    @JsonElement(key = "external_url")
+    private String externalURL;
+    @JsonElement(key = "cross_sell_ids")
+    private List<Integer> crossSellIds;
+    @JsonElement(key = "grouped_products")
+    private List<Integer> groupedProducts;
 
     public boolean isFeatured() {
         return featured;
@@ -53,24 +63,33 @@ public class ProductVariable extends Product {
         return externalURL;
     }
 
-    public TIntArrayList getCrossSellIds() {
+    public List<Integer> getCrossSellIds() {
         return crossSellIds;
     }
 
-    public TIntArrayList getGroupedProducts() {
+    public List<Integer> getGroupedProducts() {
         return groupedProducts;
     }
 
     public static class Builder extends Product.Builder<Builder> {
+        @JsonProperty("featured")
         private boolean featured;
+        @JsonProperty("categories")
         private List<ProductCategory> categories;
+        @JsonProperty("default_attributes")
         private List<ProductDefaultAttribute> defaultAttributes;
+        @JsonProperty("average_rating")
         private String averageRating;
+        @JsonProperty("button_text")
         private String buttonText;
+        @JsonProperty("catalog_visibility")
         private String catalogVisibility;
+        @JsonProperty("external_url")
         private String externalURL;
-        private TIntArrayList crossSellIds;
-        private TIntArrayList groupedProducts;
+        @JsonProperty("cross_sell_ids")
+        private List<Integer> crossSellIds;
+        @JsonProperty("grouped_products")
+        private List<Integer> groupedProducts;
 
         public Builder setFeatured(boolean featured) {
             this.featured = featured;
@@ -111,12 +130,12 @@ public class ProductVariable extends Product {
             return this;
         }
 
-        public Builder setCrossSellIds(TIntArrayList crossSellIds) {
+        public Builder setCrossSellIds(List<Integer> crossSellIds) {
             this.crossSellIds = crossSellIds;
             return this;
         }
 
-        public Builder setGroupedProducts(TIntArrayList groupedProducts) {
+        public Builder setGroupedProducts(List<Integer> groupedProducts) {
             this.groupedProducts = groupedProducts;
             return this;
         }
@@ -125,6 +144,15 @@ public class ProductVariable extends Product {
         public ProductVariable build() {
             return new ProductVariable(this);
         }
+
+        public ProductVariable init() {
+            return new ProductVariable();
+        }
+    }
+
+    ProductVariable() {
+        super();
+
     }
 
     private ProductVariable(Builder builder) {

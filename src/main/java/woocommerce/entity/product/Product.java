@@ -1,6 +1,7 @@
 package woocommerce.entity.product;
 
-import gnu.trove.list.array.TIntArrayList;
+
+import woocommerce.annotation.JsonElement;
 
 import java.util.Date;
 import java.util.List;
@@ -11,63 +12,117 @@ import java.util.List;
 
 public abstract class Product {
 
-    private final int id;
-    private final String slug;
-    private final String permalink;
-    private final Date dateCreated;
-    private final Date dateCreatedGMT;
-    private final Date dateModified;
-    private final Date dateModifiedGMT;
-    private final String type;
-    private final String status;
-    private final String description;
-    private final String shortDescription;
-    private final String sku;
+    @JsonElement(key = "id")
+    private Integer id;
+    @JsonElement(key = "slug")
+    private String slug;
+    @JsonElement(key = "permalink")
+    private String permalink;
+    @JsonElement(key = "date_created")
+    private Date dateCreated;
+    @JsonElement(key = "date_created_gmt")
+    private Date dateCreatedGMT;
+    @JsonElement(key = "data_modified")
+    private Date dateModified;
+    @JsonElement(key = "data_modified_gmt")
+    private Date dateModifiedGMT;
+    @JsonElement(key = "type")
+    private String type;
+    @JsonElement(key = "status")
+    private String status;
+    @JsonElement(key = "description")
+    private String description;
+    @JsonElement(key = "short_description")
+    private String shortDescription;
+    @JsonElement(key = "sku")
+    private String sku;
     // According to doc, price would be a String??
-    private final String price;
-    private final String regularPrice;
-    private final String salePrice;
-    private final Date dateOnSaleFrom;
-    private final Date dateOnSaleFromGMT;
-    private final Date dateOnSaleTo;
-    private final Date dateOnSaleToGMT;
-    private final String priceHTML;
-    private final boolean onSale;
-    private final boolean purchasable;
-    private final int totalSales;
-    private final boolean virtual;
-    private final boolean downloadable;
-    private final List<ProductDownload> downloads;
-    private final int downloadLimit;
-    private final int downloadExpiry;
-    private final String taxStatus;
-    private final String taxClass;
-    private final boolean manageStock;
-    private final int stockQuantity;
-    private final String stockStatus;
-    private final String backOrders;
-    private final boolean backOrdersAllowed;
-    private final boolean soldIndividually;
-    private final String weight;
-    private final ProductDimension dimensions;
-    private final boolean shippingRequired;
-    private final boolean shippingTaxable;
-    private final String shippingClass;
-    private final int shippingClassId;
-    private final boolean reviewsAllowed;
-    private final int ratingCount;
-    private final TIntArrayList relatedIds;
-    private final TIntArrayList upsellIds;
-    private final int parentId;
-    private final String purchaseNote;
-    private final List<ProductTag> tags;
-    private final List<ProductImage> images;
-    private final List<ProductAttribute> attributes;
-    private final TIntArrayList variations;
-    private final int menuOrder;
-    private final List<ProductMetadata> metadata;
+    @JsonElement(key = "price")
+    private String price;
+    @JsonElement(key = "regular_price")
+    private String regularPrice;
+    @JsonElement(key = "sale_price")
+    private String salePrice;
+    @JsonElement(key = "date_on_sale_from")
+    private Date dateOnSaleFrom;
+    @JsonElement(key = "date_on_sale_from_gmt")
+    private Date dateOnSaleFromGMT;
+    @JsonElement(key = "date_on_sale_to")
+    private Date dateOnSaleTo;
+    @JsonElement(key = "date_on_sale_to_gmt")
+    private Date dateOnSaleToGMT;
+    @JsonElement(key = "price_html")
+    private String priceHTML;
+    @JsonElement(key = "on_sale")
+    private boolean onSale;
+    @JsonElement(key = "purchasable")
+    private boolean purchasable;
+    @JsonElement(key = "total_sales")
+    private Integer totalSales;
+    @JsonElement(key = "virtual")
+    private boolean virtual;
+    @JsonElement(key = "downloadable")
+    private boolean downloadable;
+    @JsonElement(key = "downloads")
+    private List<ProductDownload> downloads;
+    @JsonElement(key = "download_limit")
+    private Integer downloadLimit;
+    @JsonElement(key = "download_expiry")
+    private Integer downloadExpiry;
+    @JsonElement(key = "tax_status")
+    private String taxStatus;
+    @JsonElement(key = "tax_class")
+    private String taxClass;
+    @JsonElement(key = "manage_stock")
+    private boolean manageStock;
+    @JsonElement(key = "stock_quantity")
+    private Integer stockQuantity;
+    @JsonElement(key = "stock_status")
+    private String stockStatus;
+    @JsonElement(key = "back_orders")
+    private String backOrders;
+    @JsonElement(key = "backorders_allowed")
+    private boolean backOrdersAllowed;
+    @JsonElement(key = "sold_individually")
+    private boolean soldIndividually;
+    @JsonElement(key = "weight")
+    private String weight;
+    @JsonElement(key = "dimensions")
+    private ProductDimension dimensions;
+    @JsonElement(key = "shipping_required")
+    private boolean shippingRequired;
+    @JsonElement(key = "shipping_taxable")
+    private boolean shippingTaxable;
+    @JsonElement(key = "shipping_class")
+    private String shippingClass;
+    @JsonElement(key = "shipping_class_id")
+    private Integer shippingClassId;
+    @JsonElement(key = "reviews_allowed")
+    private boolean reviewsAllowed;
+    @JsonElement(key = "rating_count")
+    private Integer ratingCount;
+    @JsonElement(key = "related_ids")
+    private List<Integer> relatedIds;
+    @JsonElement(key = "upsell_ids")
+    private List<Integer> upsellIds;
+    @JsonElement(key = "parent_id")
+    private Integer parentId;
+    @JsonElement(key = "purchase_note")
+    private String purchaseNote;
+    @JsonElement(key = "tags")
+    private List<ProductTag> tags;
+    @JsonElement(key = "images")
+    private List<ProductImage> images;
+    @JsonElement(key = "attributes")
+    private List<ProductAttribute> attributes;
+    @JsonElement(key = "variations")
+    private List<Integer> variations;
+    @JsonElement(key = "menu_order")
+    private Integer menuOrder;
+    @JsonElement(key = "meta_data")
+    private List<ProductMetadata> metadata;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -155,7 +210,7 @@ public abstract class Product {
         return purchasable;
     }
 
-    public int getTotalSales() {
+    public Integer getTotalSales() {
         return totalSales;
     }
 
@@ -171,11 +226,11 @@ public abstract class Product {
         return downloads;
     }
 
-    public int getDownloadLimit() {
+    public Integer getDownloadLimit() {
         return downloadLimit;
     }
 
-    public int getDownloadExpiry() {
+    public Integer getDownloadExpiry() {
         return downloadExpiry;
     }
 
@@ -191,7 +246,7 @@ public abstract class Product {
         return manageStock;
     }
 
-    public int getStockQuantity() {
+    public Integer getStockQuantity() {
         return stockQuantity;
     }
 
@@ -231,7 +286,7 @@ public abstract class Product {
         return shippingClass;
     }
 
-    public int getShippingClassId() {
+    public Integer getShippingClassId() {
         return shippingClassId;
     }
 
@@ -239,19 +294,19 @@ public abstract class Product {
         return reviewsAllowed;
     }
 
-    public int getRatingCount() {
+    public Integer getRatingCount() {
         return ratingCount;
     }
 
-    public TIntArrayList getRelatedIds() {
+    public List<Integer> getRelatedIds() {
         return relatedIds;
     }
 
-    public TIntArrayList getUpsellIds() {
+    public List<Integer> getUpsellIds() {
         return upsellIds;
     }
 
-    public int getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
@@ -271,11 +326,11 @@ public abstract class Product {
         return attributes;
     }
 
-    public TIntArrayList getVariations() {
+    public List<Integer> getVariations() {
         return variations;
     }
 
-    public int getMenuOrder() {
+    public Integer getMenuOrder() {
         return menuOrder;
     }
 
@@ -285,7 +340,7 @@ public abstract class Product {
 
     abstract static class Builder<T extends Builder<T>> {
 
-        private int id;
+        private Integer id;
         private String slug;
         private String permalink;
         private Date dateCreated;
@@ -308,16 +363,16 @@ public abstract class Product {
         private String priceHTML;
         private boolean onSale;
         private boolean purchasable;
-        private int totalSales;
+        private Integer totalSales;
         private boolean virtual;
         private boolean downloadable;
         private List<ProductDownload> downloads;
-        private int downloadLimit;
-        private int downloadExpiry;
+        private Integer downloadLimit;
+        private Integer downloadExpiry;
         private String taxStatus;
         private String taxClass;
         private boolean manageStock;
-        private int stockQuantity;
+        private Integer stockQuantity;
         private String stockStatus;
         private String backOrders;
         private boolean backOrdersAllowed;
@@ -327,21 +382,21 @@ public abstract class Product {
         private boolean shippingRequired;
         private boolean shippingTaxable;
         private String shippingClass;
-        private int shippingClassId;
+        private Integer shippingClassId;
         private boolean reviewsAllowed;
-        private int ratingCount;
-        private TIntArrayList relatedIds;
-        private TIntArrayList upsellIds;
-        private int parentId;
+        private Integer ratingCount;
+        private List<Integer> relatedIds;
+        private List<Integer> upsellIds;
+        private Integer parentId;
         private String purchaseNote;
         private List<ProductTag> tags;
         private List<ProductImage> images;
         private List<ProductAttribute> attributes;
-        private TIntArrayList variations;
-        private int menuOrder;
+        private List<Integer> variations;
+        private Integer menuOrder;
         private List<ProductMetadata> metadata;
 
-        public T setId(int id) {
+        public T setId(Integer id) {
             this.id = id;
             return self();
         }
@@ -451,7 +506,7 @@ public abstract class Product {
             return self();
         }
 
-        public T setTotalSales(int totalSales) {
+        public T setTotalSales(Integer totalSales) {
             this.totalSales = totalSales;
             return self();
         }
@@ -471,12 +526,12 @@ public abstract class Product {
             return self();
         }
 
-        public T setDownloadLimit(int downloadLimit) {
+        public T setDownloadLimit(Integer downloadLimit) {
             this.downloadLimit = downloadLimit;
             return self();
         }
 
-        public T setDownloadExpiry(int downloadExpiry) {
+        public T setDownloadExpiry(Integer downloadExpiry) {
             this.downloadExpiry = downloadExpiry;
             return self();
         }
@@ -496,7 +551,7 @@ public abstract class Product {
             return self();
         }
 
-        public T setStockQuantity(int stockQuantity) {
+        public T setStockQuantity(Integer stockQuantity) {
             this.stockQuantity = stockQuantity;
             return self();
         }
@@ -546,7 +601,7 @@ public abstract class Product {
             return self();
         }
 
-        public T setShippingClassId(int shippingClassId) {
+        public T setShippingClassId(Integer shippingClassId) {
             this.shippingClassId = shippingClassId;
             return self();
         }
@@ -556,22 +611,22 @@ public abstract class Product {
             return self();
         }
 
-        public T setRatingCount(int ratingCount) {
+        public T setRatingCount(Integer ratingCount) {
             this.ratingCount = ratingCount;
             return self();
         }
 
-        public T setRelatedIds(TIntArrayList relatedIds) {
+        public T setRelatedIds(List<Integer> relatedIds) {
             this.relatedIds = relatedIds;
             return self();
         }
 
-        public T setUpsellIds(TIntArrayList upsellIds) {
+        public T setUpsellIds(List<Integer> upsellIds) {
             this.upsellIds = upsellIds;
             return self();
         }
 
-        public T setParentId(int parentId) {
+        public T setParentId(Integer parentId) {
             this.parentId = parentId;
             return self();
         }
@@ -596,12 +651,12 @@ public abstract class Product {
             return self();
         }
 
-        public T setVariations(TIntArrayList variations) {
+        public T setVariations(List<Integer> variations) {
             this.variations = variations;
             return self();
         }
 
-        public T setMenuOrder(int menuOrder) {
+        public T setMenuOrder(Integer menuOrder) {
             this.menuOrder = menuOrder;
             return self();
         }
@@ -614,6 +669,10 @@ public abstract class Product {
         protected abstract T self();
 
         abstract Product build();
+    }
+
+    Product() {
+
     }
 
     Product(Builder<?> builder) {

@@ -1,8 +1,9 @@
-package woocommerce.handler;
+package woocommerce.handler.impl;
 
 /**
  * @author TruongNX25
  */
 
 public class OrderHandler {
+
 }
