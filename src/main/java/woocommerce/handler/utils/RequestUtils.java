@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
@@ -57,10 +58,7 @@ public class RequestUtils {
         for (String key : headers.keySet()) {
             request.addHeader(key, headers.get(key));
         }
-        try (CloseableHttpClient httpClient = ignoreSSLError ? HttpClients.custom()
-                .setSSLContext(new SSLContextBuilder().loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
-                .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                .build() : HttpClients.createDefault();
+        try (CloseableHttpClient httpClient = getHttpClient(ignoreSSLError);
              CloseableHttpResponse response = httpClient.execute(request)) {
             LOG.debug("Protocol version:" + response.getProtocolVersion());
             LOG.info("Status code: " + response.getStatusLine().getStatusCode());
@@ -90,10 +88,7 @@ public class RequestUtils {
             post.addHeader(key, headers.get(key));
         }
         post.setEntity(new StringEntity(data));
-        try (CloseableHttpClient httpClient = ignoreSSLError ? HttpClients.custom()
-                .setSSLContext(new SSLContextBuilder().loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
-                .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                .build() : HttpClients.createDefault();
+        try (CloseableHttpClient httpClient = getHttpClient(ignoreSSLError);
              CloseableHttpResponse response = httpClient.execute(post)) {
             LOG.debug("Protocol version:" + response.getProtocolVersion());
             LOG.info("Status code: " + response.getStatusLine().getStatusCode());
@@ -104,5 +99,31 @@ public class RequestUtils {
             e.printStackTrace();
         }
         return responseData;
+    }
+
+    public static String deleteRequest(String URL, Map<String, String> headers, boolean ignoreSSLError) {
+        String responseData = null;
+        HttpDelete delete = new HttpDelete(URL);
+        for (String key : headers.keySet()) {
+            delete.addHeader(key, headers.get(key));
+        }
+        try (CloseableHttpClient httpClient = getHttpClient(ignoreSSLError);
+             CloseableHttpResponse response = httpClient.execute(delete)) {
+            LOG.debug("Protocol version:" + response.getProtocolVersion());
+            LOG.info("Status code: " + response.getStatusLine().getStatusCode());
+            LOG.debug("Reason Phrase: " + response.getStatusLine().getReasonPhrase());
+            LOG.debug("Status Line: " + response.getStatusLine().toString());
+            responseData = EntityUtils.toString(response.getEntity());
+        } catch (IOException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
+            e.printStackTrace();
+        }
+        return responseData;
+    }
+
+    static CloseableHttpClient getHttpClient(boolean ignoreSSLError) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+        return ignoreSSLError ? HttpClients.custom()
+                .setSSLContext(new SSLContextBuilder().loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
+                .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                .build() : HttpClients.createDefault();
     }
 }
