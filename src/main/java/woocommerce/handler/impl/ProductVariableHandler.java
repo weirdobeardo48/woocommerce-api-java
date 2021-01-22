@@ -115,7 +115,7 @@ public class ProductVariableHandler implements IWoocommerce<ProductVariable> {
 
     public boolean delete(int id) {
         String json = productRequest.DELETE(id);
-        return json != null;
+        return ReflectionUtils.jsonStringToProductVariable(json) != null;
     }
 
     public List<ProductVariable> batchUpdate(List<ProductVariable> productVariables) {

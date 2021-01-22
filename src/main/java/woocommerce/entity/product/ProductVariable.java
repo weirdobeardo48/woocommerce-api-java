@@ -1,7 +1,6 @@
 package woocommerce.entity.product;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import gnu.trove.list.array.TIntArrayList;
 import woocommerce.annotation.JsonElement;
 
 import java.util.List;
