@@ -1,16 +1,20 @@
 package woocommerce.utils;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 public class DateTimeUtils {
-    private static final SimpleDateFormat ISO_8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+    private static final DateTimeFormatter ISO_8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
-    public static Date jsonDateStringToJavaDate(String date) {
+    public static LocalDateTime jsonDateStringToJavaDate(String date) {
         try {
-            return ISO_8601.parse(date);
-        } catch (ParseException e) {
+            return LocalDateTime.parse(date, ISO_8601);
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+            return null;
+        } catch (RuntimeException e) {
             e.printStackTrace();
             return null;
         }
