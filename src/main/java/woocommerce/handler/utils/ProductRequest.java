@@ -70,6 +70,11 @@ public class ProductRequest implements IRequest {
 
     @Override
     public String POST(String data) {
-        return null;
+        try {
+            return RequestUtils.postRequest(URL, headers, data, ignoreSSLError);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
