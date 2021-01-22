@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class DateTimeUtils {
-    private static final DateTimeFormatter ISO_8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+    private static final DateTimeFormatter ISO_8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     public static LocalDateTime jsonDateStringToJavaDate(String date) {
         try {
