@@ -3,21 +3,14 @@ package woocommerce.handler.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
-import woocommerce.annotation.JsonElement;
 import woocommerce.entity.StoreInformation;
-import woocommerce.entity.product.ProductDimension;
 import woocommerce.entity.product.ProductVariable;
 import woocommerce.exception.product.CannotCreateProductException;
 import woocommerce.handler.IWoocommerce;
 import woocommerce.handler.utils.ProductRequest;
 import woocommerce.handler.utils.WoocommerceAPIVersion;
-import woocommerce.utils.DateTimeUtils;
 import woocommerce.utils.ReflectionUtils;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -121,7 +114,8 @@ public class ProductVariableHandler implements IWoocommerce<ProductVariable> {
     }
 
     public boolean delete(int id) {
-        return false;
+        String json = productRequest.DELETE(id);
+        return json != null;
     }
 
     public List<ProductVariable> batchUpdate(List<ProductVariable> productVariables) {
