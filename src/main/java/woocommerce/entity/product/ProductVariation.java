@@ -2,8 +2,6 @@ package woocommerce.entity.product;
 
 import gnu.trove.list.array.TIntArrayList;
 
-import java.util.Date;
-import java.util.List;
 
 
 /**

@@ -1,6 +1,6 @@
 package woocommerce.entity.order;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -19,10 +19,10 @@ public class Order {
     private final String version;
     private final String status;
     private final String currency;
-    private final Date dateCreated;
-    private final Date dateCreatedGMT;
-    private final Date dateModified;
-    private final Date dateModifiedGMT;
+    private final LocalDateTime dateCreated;
+    private final LocalDateTime dateCreatedGMT;
+    private final LocalDateTime dateModified;
+    private final LocalDateTime dateModifiedGMT;
     private final String discountTotal;
     private final String discountTax;
     private final String shippingTotal;
@@ -40,10 +40,10 @@ public class Order {
     private final String paymentMethod;
     private final String paymentMethodTitle;
     private final String transactionId;
-    private final Date datePaid;
-    private final Date datePaidGMT;
-    private final Date dateCompleted;
-    private final Date dateCompletedGMT;
+    private final LocalDateTime datePaid;
+    private final LocalDateTime datePaidGMT;
+    private final LocalDateTime dateCompleted;
+    private final LocalDateTime dateCompletedGMT;
     private final String cartHash;
     private final List<OrderMetadata> metadata;
     private final List<OrderLineItem> lineItems;
@@ -86,19 +86,19 @@ public class Order {
         return currency;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getLocalDateTimeCreated() {
         return dateCreated;
     }
 
-    public Date getDateCreatedGMT() {
+    public LocalDateTime getLocalDateTimeCreatedGMT() {
         return dateCreatedGMT;
     }
 
-    public Date getDateModified() {
+    public LocalDateTime getLocalDateTimeModified() {
         return dateModified;
     }
 
-    public Date getDateModifiedGMT() {
+    public LocalDateTime getLocalDateTimeModifiedGMT() {
         return dateModifiedGMT;
     }
 
@@ -170,19 +170,19 @@ public class Order {
         return transactionId;
     }
 
-    public Date getDatePaid() {
+    public LocalDateTime getLocalDateTimePaid() {
         return datePaid;
     }
 
-    public Date getDatePaidGMT() {
+    public LocalDateTime getLocalDateTimePaidGMT() {
         return datePaidGMT;
     }
 
-    public Date getDateCompleted() {
+    public LocalDateTime getLocalDateTimeCompleted() {
         return dateCompleted;
     }
 
-    public Date getDateCompletedGMT() {
+    public LocalDateTime getLocalDateTimeCompletedGMT() {
         return dateCompletedGMT;
     }
 
@@ -231,10 +231,10 @@ public class Order {
         private String version;
         private String status;
         private String currency;
-        private Date dateCreated;
-        private Date dateCreatedGMT;
-        private Date dateModified;
-        private Date dateModifiedGMT;
+        private LocalDateTime dateCreated;
+        private LocalDateTime dateCreatedGMT;
+        private LocalDateTime dateModified;
+        private LocalDateTime dateModifiedGMT;
         private String discountTotal;
         private String discountTax;
         private String shippingTotal;
@@ -252,10 +252,10 @@ public class Order {
         private String paymentMethod;
         private String paymentMethodTitle;
         private String transactionId;
-        private Date datePaid;
-        private Date datePaidGMT;
-        private Date dateCompleted;
-        private Date dateCompletedGMT;
+        private LocalDateTime datePaid;
+        private LocalDateTime datePaidGMT;
+        private LocalDateTime dateCompleted;
+        private LocalDateTime dateCompletedGMT;
         private String cartHash;
         private List<OrderMetadata> metadata;
         private List<OrderLineItem> lineItems;
@@ -307,22 +307,22 @@ public class Order {
             return this;
         }
 
-        public Builder setDateCreated(Date dateCreated) {
+        public Builder setLocalDateTimeCreated(LocalDateTime dateCreated) {
             this.dateCreated = dateCreated;
             return this;
         }
 
-        public Builder setDateCreatedGMT(Date dateCreatedGMT) {
+        public Builder setLocalDateTimeCreatedGMT(LocalDateTime dateCreatedGMT) {
             this.dateCreatedGMT = dateCreatedGMT;
             return this;
         }
 
-        public Builder setDateModified(Date dateModified) {
+        public Builder setLocalDateTimeModified(LocalDateTime dateModified) {
             this.dateModified = dateModified;
             return this;
         }
 
-        public Builder setDateModifiedGMT(Date dateModifiedGMT) {
+        public Builder setLocalDateTimeModifiedGMT(LocalDateTime dateModifiedGMT) {
             this.dateModifiedGMT = dateModifiedGMT;
             return this;
         }
@@ -412,22 +412,22 @@ public class Order {
             return this;
         }
 
-        public Builder setDatePaid(Date datePaid) {
+        public Builder setLocalDateTimePaid(LocalDateTime datePaid) {
             this.datePaid = datePaid;
             return this;
         }
 
-        public Builder setDatePaidGMT(Date datePaidGMT) {
+        public Builder setLocalDateTimePaidGMT(LocalDateTime datePaidGMT) {
             this.datePaidGMT = datePaidGMT;
             return this;
         }
 
-        public Builder setDateCompleted(Date dateCompleted) {
+        public Builder setLocalDateTimeCompleted(LocalDateTime dateCompleted) {
             this.dateCompleted = dateCompleted;
             return this;
         }
 
-        public Builder setDateCompletedGMT(Date dateCompletedGMT) {
+        public Builder setLocalDateTimeCompletedGMT(LocalDateTime dateCompletedGMT) {
             this.dateCompletedGMT = dateCompletedGMT;
             return this;
         }
