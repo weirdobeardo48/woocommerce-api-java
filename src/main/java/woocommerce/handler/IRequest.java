@@ -10,5 +10,7 @@ public interface IRequest {
 
     String GET(Map<String, String> params);
 
-    String POST(Map<String, String> data);
+    String POST(Map<Object, Object> data);
+
+    String POST(String data);
 }
