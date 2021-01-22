@@ -2,6 +2,7 @@ package woocommerce.entity.product;
 
 
 import woocommerce.annotation.JsonElement;
+import woocommerce.annotation.JsonElementType;
 
 import java.util.Date;
 import java.util.List;
@@ -58,6 +59,7 @@ public abstract class Product {
     @JsonElement(key = "purchasable")
     private boolean purchasable;
     @JsonElement(key = "total_sales")
+    @JsonElementType(type = 2)
     private Integer totalSales;
     @JsonElement(key = "virtual")
     private boolean virtual;
@@ -672,7 +674,6 @@ public abstract class Product {
     }
 
     Product() {
-
     }
 
     Product(Builder<?> builder) {
@@ -731,6 +732,66 @@ public abstract class Product {
         variations = builder.variations;
         menuOrder = builder.menuOrder;
         metadata = builder.metadata;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", slug='" + slug + '\'' +
+                ", permalink='" + permalink + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", dateCreatedGMT=" + dateCreatedGMT +
+                ", dateModified=" + dateModified +
+                ", dateModifiedGMT=" + dateModifiedGMT +
+                ", type='" + type + '\'' +
+                ", status='" + status + '\'' +
+                ", description='" + description + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", sku='" + sku + '\'' +
+                ", price='" + price + '\'' +
+                ", regularPrice='" + regularPrice + '\'' +
+                ", salePrice='" + salePrice + '\'' +
+                ", dateOnSaleFrom=" + dateOnSaleFrom +
+                ", dateOnSaleFromGMT=" + dateOnSaleFromGMT +
+                ", dateOnSaleTo=" + dateOnSaleTo +
+                ", dateOnSaleToGMT=" + dateOnSaleToGMT +
+                ", priceHTML='" + priceHTML + '\'' +
+                ", onSale=" + onSale +
+                ", purchasable=" + purchasable +
+                ", totalSales=" + totalSales +
+                ", virtual=" + virtual +
+                ", downloadable=" + downloadable +
+                ", downloads=" + downloads +
+                ", downloadLimit=" + downloadLimit +
+                ", downloadExpiry=" + downloadExpiry +
+                ", taxStatus='" + taxStatus + '\'' +
+                ", taxClass='" + taxClass + '\'' +
+                ", manageStock=" + manageStock +
+                ", stockQuantity=" + stockQuantity +
+                ", stockStatus='" + stockStatus + '\'' +
+                ", backOrders='" + backOrders + '\'' +
+                ", backOrdersAllowed=" + backOrdersAllowed +
+                ", soldIndividually=" + soldIndividually +
+                ", weight='" + weight + '\'' +
+                ", dimensions=" + dimensions +
+                ", shippingRequired=" + shippingRequired +
+                ", shippingTaxable=" + shippingTaxable +
+                ", shippingClass='" + shippingClass + '\'' +
+                ", shippingClassId=" + shippingClassId +
+                ", reviewsAllowed=" + reviewsAllowed +
+                ", ratingCount=" + ratingCount +
+                ", relatedIds=" + relatedIds +
+                ", upsellIds=" + upsellIds +
+                ", parentId=" + parentId +
+                ", purchaseNote='" + purchaseNote + '\'' +
+                ", tags=" + tags +
+                ", images=" + images +
+                ", attributes=" + attributes +
+                ", variations=" + variations +
+                ", menuOrder=" + menuOrder +
+                ", metadata=" + metadata +
+                '}';
     }
 }
 

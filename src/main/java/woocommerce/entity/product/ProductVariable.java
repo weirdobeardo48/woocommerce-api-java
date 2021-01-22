@@ -167,4 +167,19 @@ public class ProductVariable extends Product {
         defaultAttributes = builder.defaultAttributes;
         groupedProducts = builder.groupedProducts;
     }
+
+    @Override
+    public String toString() {
+        return "ProductVariable{" +
+                "featured=" + featured +
+                ", categories=" + categories +
+                ", defaultAttributes=" + defaultAttributes +
+                ", averageRating='" + averageRating + '\'' +
+                ", buttonText='" + buttonText + '\'' +
+                ", catalogVisibility='" + catalogVisibility + '\'' +
+                ", externalURL='" + externalURL + '\'' +
+                ", crossSellIds=" + crossSellIds +
+                ", groupedProducts=" + groupedProducts +
+                "} " + super.toString();
+    }
 }

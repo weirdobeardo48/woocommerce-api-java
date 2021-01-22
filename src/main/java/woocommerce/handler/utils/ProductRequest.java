@@ -58,12 +58,18 @@ public class ProductRequest implements IRequest {
      * @return
      */
     @Override
-    public String POST(Map<String, String> data) {
+    public String POST(Map<Object, Object> data) {
         try {
             return RequestUtils.postRequest(URL, headers, data, ignoreSSLError);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    @Override
+    public String POST(String data) {
+        return null;
     }
 }

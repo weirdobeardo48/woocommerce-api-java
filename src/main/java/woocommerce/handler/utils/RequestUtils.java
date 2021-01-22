@@ -57,7 +57,6 @@ public class RequestUtils {
         for (String key : headers.keySet()) {
             request.addHeader(key, headers.get(key));
         }
-        System.out.println(URL);
         try (CloseableHttpClient httpClient = ignoreSSLError ? HttpClients.custom()
                 .setSSLContext(new SSLContextBuilder().loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
                 .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
@@ -77,12 +76,20 @@ public class RequestUtils {
         return responseData;
     }
 
-    public static String postRequest(String URL, Map<String, String> headers, Map<String, String> data, boolean ignoreSSLError) throws UnsupportedEncodingException, JsonProcessingException {
-        String responseData = null;
-        HttpPost post = new HttpPost(URL);
+    public static String postRequest(String URL, Map<String, String> headers, Map<Object, Object> data, boolean ignoreSSLError) throws UnsupportedEncodingException, JsonProcessingException {
+
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(data);
-        post.setEntity(new StringEntity(json));
+        return postRequest(URL, headers, json, ignoreSSLError);
+    }
+
+    public static String postRequest(String URL, Map<String, String> headers, String data, boolean ignoreSSLError) throws UnsupportedEncodingException {
+        String responseData = null;
+        HttpPost post = new HttpPost(URL);
+        for (String key : headers.keySet()) {
+            post.addHeader(key, headers.get(key));
+        }
+        post.setEntity(new StringEntity(data));
         try (CloseableHttpClient httpClient = ignoreSSLError ? HttpClients.custom()
                 .setSSLContext(new SSLContextBuilder().loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
                 .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)

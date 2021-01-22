@@ -33,4 +33,14 @@ public class ProductDimension {
     public void setHeight(String height) {
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return "ProductDimension{" +
+                "length='" + length + '\'' +
+                ", width='" + width + '\'' +
+                ", height='" + height + '\'' +
+                '}';
+    }
+
 }
