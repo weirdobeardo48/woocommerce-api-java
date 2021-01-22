@@ -102,10 +102,7 @@ public class ProductVariableHandler implements IWoocommerce<ProductVariable> {
 
     public ProductVariable get(int id) {
         String json = productRequest.GET(id);
-        if (json != null) {
-            return ReflectionUtils.jsonStringToProductVariable(json);
-        }
-        return null;
+        return ReflectionUtils.jsonStringToProductVariable(json);
     }
 
 

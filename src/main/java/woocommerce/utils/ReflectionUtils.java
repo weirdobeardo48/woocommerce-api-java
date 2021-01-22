@@ -1,6 +1,7 @@
 package woocommerce.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
 import woocommerce.annotation.JsonElement;
 import woocommerce.annotation.JsonElementType;
 import woocommerce.entity.product.ProductDimension;
@@ -11,6 +12,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class ReflectionUtils {
+    private static final Logger LOG = Logger.getLogger(ReflectionUtils.class);
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public static List<Field> getAllFields(List<Field> fields, Class<?> clazz) {
