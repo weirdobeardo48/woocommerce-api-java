@@ -3,7 +3,7 @@ package woocommerce.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import woocommerce.annotation.JsonElement;
-import woocommerce.annotation.JsonElementType;
+import woocommerce.annotation.TypeOfJsonElement;
 import woocommerce.entity.product.ProductDimension;
 import woocommerce.entity.product.ProductVariable;
 import woocommerce.exception.CanNotSetNullFieldReflectUtilsException;
@@ -33,14 +33,19 @@ public class ReflectionUtils {
                 field.setAccessible(true);
                 if (field.isAnnotationPresent(JsonElement.class)) {
                     String key = field.getAnnotation(JsonElement.class).key();
-                    if (field.isAnnotationPresent(JsonElementType.class)) {
-                        // We need to convert String to Integer
-                        Integer prop = null;
-                        if (result.get(field.getAnnotation(JsonElement.class).key()) instanceof String) {
-                            prop = Integer.parseInt((String) result.get(field.getAnnotation(JsonElement.class).key()));
+                    TypeOfJsonElement typeOfElement = field.getAnnotation(JsonElement.class).type();
+
+                    if (typeOfElement != TypeOfJsonElement.NONE) {
+                        //need to cast to specific type
+                        if (typeOfElement == TypeOfJsonElement.INTEGER) {
+                            Integer prop = Integer.parseInt((String) result.get(key));
+                            field.set(productVariable, prop);
+                        } else if (typeOfElement == TypeOfJsonElement.STRING) {
+                            String prop = result.get(key).toString();
+                            field.set(productVariable, prop);
                         }
-                        field.set(productVariable, prop);
-                    } else {
+                    }
+                    else {
                         try {
                             if (key.contains("date")) {
                                 field.set(productVariable, DateTimeUtils.jsonDateStringToJavaDate(result.get(field.getAnnotation(JsonElement.class).key()).toString()));

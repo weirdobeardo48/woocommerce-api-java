@@ -2,7 +2,8 @@ package woocommerce.entity.product;
 
 
 import woocommerce.annotation.JsonElement;
-import woocommerce.annotation.JsonElementType;
+import woocommerce.annotation.TypeOfJsonElement;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -58,8 +59,7 @@ public abstract class Product {
     private boolean onSale;
     @JsonElement(key = "purchasable")
     private boolean purchasable;
-    @JsonElement(key = "total_sales")
-    @JsonElementType(type = 2)
+    @JsonElement(key = "total_sales", type = TypeOfJsonElement.INTEGER)
     private Integer totalSales;
     @JsonElement(key = "virtual")
     private boolean virtual;
