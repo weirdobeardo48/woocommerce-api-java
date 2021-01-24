@@ -41,7 +41,7 @@ public class ReflectionUtils {
                             Integer prop = Integer.parseInt((String) result.get(key));
                             field.set(productVariable, prop);
                         } else if (typeOfElement == TypeOfJsonElement.STRING) {
-                            String prop = result.get(key).toString();
+                            String prop = (String) result.get(key);
                             field.set(productVariable, prop);
                         }
                     }
