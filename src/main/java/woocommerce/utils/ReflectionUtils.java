@@ -34,48 +34,14 @@ public class ReflectionUtils {
                 if (field.isAnnotationPresent(JsonElement.class)) {
                     String key = field.getAnnotation(JsonElement.class).key();
                     TypeOfJsonElement typeOfElement = field.getAnnotation(JsonElement.class).type();
+                    Object obj = result.get(key);
 
-                    if (typeOfElement != TypeOfJsonElement.NONE) {
-                        //need to cast to specific type
-                        if (typeOfElement == TypeOfJsonElement.INTEGER) {
-                            Integer prop = Integer.parseInt((String) result.get(key));
-                            field.set(productVariable, prop);
-                        } else if (typeOfElement == TypeOfJsonElement.STRING) {
-                            String prop = (String) result.get(key);
-                            field.set(productVariable, prop);
-                        }
+                    if (typeOfElement == TypeOfJsonElement.NONE) {
+                        field.set(productVariable, obj);
                     }
                     else {
-                        try {
-                            if (key.contains("date")) {
-                                field.set(productVariable, DateTimeUtils.jsonDateStringToJavaDate(result.get(field.getAnnotation(JsonElement.class).key()).toString()));
-                            } else if (key.contains("dimensions")) {
-                                ProductDimension productDimension = new ProductDimension();
-                                for (Field field1 : ProductDimension.class.getDeclaredFields()) {
-                                    field1.setAccessible(true);
-                                    LinkedHashMap<String, String> dimensions = null;
-                                    if (result.get(field.getAnnotation(JsonElement.class).key()) instanceof LinkedHashMap) {
-                                        dimensions = (LinkedHashMap) result.get(field.getAnnotation(JsonElement.class).key());
-                                    }
-                                    for (String k : dimensions.keySet()) {
-                                        if (field1.getName().equals(k)) {
-                                            field1.set(productDimension, dimensions.get(k));
-                                        }
-                                    }
-                                }
-                                field.set(productVariable, productDimension);
-                            } else if (key.equals("backorders")) {
-                                if (result.get(field.getAnnotation(JsonElement.class).key()).toString().equals("no")) {
-                                    field.set(productVariable, false);
-                                } else {
-                                    field.set(productVariable, true);
-                                }
-                            } else {
-                                field.set(productVariable, result.get(field.getAnnotation(JsonElement.class).key()));
-                            }
-                        } catch (Exception e) {
-                            throw new CanNotSetNullFieldReflectUtilsException(String.format("Cannot set null key %s to object %s", key, field.getType().getName()), e.getCause());
-                        }
+                        //need to cast to specific type
+                        field.set(productVariable, typeOfElement.typeOfTargetClass.cast(convert(obj, typeOfElement)));
                     }
                 }
             }
@@ -85,4 +51,47 @@ public class ReflectionUtils {
         return productVariable;
     }
 
+    public static Object convert(Object obj, TypeOfJsonElement clazz) {
+        Object prop = null;
+        try {
+            switch (clazz) {
+                case NONE:
+                    prop = obj;
+                    break;
+                case INTEGER:
+                    prop = Integer.parseInt((String) obj);
+                    break;
+                case STRING:
+                    prop = (String) obj;
+                    break;
+                case ISO8601_DATETIME:
+                    prop = DateTimeUtils.jsonDateStringToJavaDate((String) obj);
+                    break;
+                case DIMENSION:
+                    ProductDimension productDimension = new ProductDimension();
+                    for (Field field1 : ProductDimension.class.getDeclaredFields()) {
+                        field1.setAccessible(true);
+                        LinkedHashMap<String, String> dimensions = null;
+                        if (obj instanceof LinkedHashMap) {
+                            dimensions = (LinkedHashMap) obj;
+                        }
+                        for (String k : dimensions.keySet()) {
+                            if (field1.getName().equals(k)) {
+                                field1.set(productDimension, dimensions.get(k));
+                            }
+                        }
+                    }
+                    break;
+                case BACKORDERS:
+                    if (obj.toString().equals("no"))
+                        prop = false;
+                    else
+                        prop = true;
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return prop;
+    }
 }
