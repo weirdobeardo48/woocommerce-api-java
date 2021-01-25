@@ -4,7 +4,7 @@ package woocommerce.entity.product;
 import woocommerce.annotation.JsonElement;
 import woocommerce.annotation.JsonElementType;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -20,13 +20,13 @@ public abstract class Product {
     @JsonElement(key = "permalink")
     private String permalink;
     @JsonElement(key = "date_created")
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
     @JsonElement(key = "date_created_gmt")
-    private Date dateCreatedGMT;
+    private LocalDateTime dateCreatedGMT;
     @JsonElement(key = "data_modified")
-    private Date dateModified;
+    private LocalDateTime dateModified;
     @JsonElement(key = "data_modified_gmt")
-    private Date dateModifiedGMT;
+    private LocalDateTime dateModifiedGMT;
     @JsonElement(key = "type")
     private String type;
     @JsonElement(key = "status")
@@ -45,13 +45,13 @@ public abstract class Product {
     @JsonElement(key = "sale_price")
     private String salePrice;
     @JsonElement(key = "date_on_sale_from")
-    private Date dateOnSaleFrom;
+    private LocalDateTime dateOnSaleFrom;
     @JsonElement(key = "date_on_sale_from_gmt")
-    private Date dateOnSaleFromGMT;
+    private LocalDateTime dateOnSaleFromGMT;
     @JsonElement(key = "date_on_sale_to")
-    private Date dateOnSaleTo;
+    private LocalDateTime dateOnSaleTo;
     @JsonElement(key = "date_on_sale_to_gmt")
-    private Date dateOnSaleToGMT;
+    private LocalDateTime dateOnSaleToGMT;
     @JsonElement(key = "price_html")
     private String priceHTML;
     @JsonElement(key = "on_sale")
@@ -136,19 +136,19 @@ public abstract class Product {
         return permalink;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getLocalDateTimeCreated() {
         return dateCreated;
     }
 
-    public Date getDateCreatedGMT() {
+    public LocalDateTime getLocalDateTimeCreatedGMT() {
         return dateCreatedGMT;
     }
 
-    public Date getDateModified() {
+    public LocalDateTime getLocalDateTimeModified() {
         return dateModified;
     }
 
-    public Date getDateModifiedGMT() {
+    public LocalDateTime getLocalDateTimeModifiedGMT() {
         return dateModifiedGMT;
     }
 
@@ -184,19 +184,19 @@ public abstract class Product {
         return salePrice;
     }
 
-    public Date getDateOnSaleFrom() {
+    public LocalDateTime getLocalDateTimeOnSaleFrom() {
         return dateOnSaleFrom;
     }
 
-    public Date getDateOnSaleFromGMT() {
+    public LocalDateTime getLocalDateTimeOnSaleFromGMT() {
         return dateOnSaleFromGMT;
     }
 
-    public Date getDateOnSaleTo() {
+    public LocalDateTime getLocalDateTimeOnSaleTo() {
         return dateOnSaleTo;
     }
 
-    public Date getDateOnSaleToGMT() {
+    public LocalDateTime getLocalDateTimeOnSaleToGMT() {
         return dateOnSaleToGMT;
     }
 
@@ -345,10 +345,10 @@ public abstract class Product {
         private Integer id;
         private String slug;
         private String permalink;
-        private Date dateCreated;
-        private Date dateCreatedGMT;
-        private Date dateModified;
-        private Date dateModifiedGMT;
+        private LocalDateTime dateCreated;
+        private LocalDateTime dateCreatedGMT;
+        private LocalDateTime dateModified;
+        private LocalDateTime dateModifiedGMT;
         private String type;
         private String status;
         private String description;
@@ -358,10 +358,10 @@ public abstract class Product {
         private String price;
         private String regularPrice;
         private String salePrice;
-        private Date dateOnSaleFrom;
-        private Date dateOnSaleFromGMT;
-        private Date dateOnSaleTo;
-        private Date dateOnSaleToGMT;
+        private LocalDateTime dateOnSaleFrom;
+        private LocalDateTime dateOnSaleFromGMT;
+        private LocalDateTime dateOnSaleTo;
+        private LocalDateTime dateOnSaleToGMT;
         private String priceHTML;
         private boolean onSale;
         private boolean purchasable;
@@ -413,22 +413,22 @@ public abstract class Product {
             return self();
         }
 
-        public T setDateCreated(Date dateCreated) {
+        public T setLocalDateTimeCreated(LocalDateTime dateCreated) {
             this.dateCreated = dateCreated;
             return self();
         }
 
-        public T setDateCreatedGMT(Date dateCreatedGMT) {
+        public T setLocalDateTimeCreatedGMT(LocalDateTime dateCreatedGMT) {
             this.dateCreatedGMT = dateCreatedGMT;
             return self();
         }
 
-        public T setDateModified(Date dateModified) {
+        public T setLocalDateTimeModified(LocalDateTime dateModified) {
             this.dateModified = dateModified;
             return self();
         }
 
-        public T setDateModifiedGMT(Date dateModifiedGMT) {
+        public T setLocalDateTimeModifiedGMT(LocalDateTime dateModifiedGMT) {
             this.dateModifiedGMT = dateModifiedGMT;
             return self();
         }
@@ -473,22 +473,22 @@ public abstract class Product {
             return self();
         }
 
-        public T setDateOnSaleFrom(Date dateOnSaleFrom) {
+        public T setLocalDateTimeOnSaleFrom(LocalDateTime dateOnSaleFrom) {
             this.dateOnSaleFrom = dateOnSaleFrom;
             return self();
         }
 
-        public T setDateOnSaleFromGMT(Date dateOnSaleFromGMT) {
+        public T setLocalDateTimeOnSaleFromGMT(LocalDateTime dateOnSaleFromGMT) {
             this.dateOnSaleFromGMT = dateOnSaleFromGMT;
             return self();
         }
 
-        public T setDateOnSaleTo(Date dateOnSaleTo) {
+        public T setLocalDateTimeOnSaleTo(LocalDateTime dateOnSaleTo) {
             this.dateOnSaleTo = dateOnSaleTo;
             return self();
         }
 
-        public T setDateOnSaleToGMT(Date dateOnSaleToGMT) {
+        public T setLocalDateTimeOnSaleToGMT(LocalDateTime dateOnSaleToGMT) {
             this.dateOnSaleToGMT = dateOnSaleToGMT;
             return self();
         }

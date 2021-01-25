@@ -1,6 +1,6 @@
 package woocommerce.entity.product;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author TruongNX25
@@ -8,10 +8,10 @@ import java.util.Date;
 
 public class ProductImage {
     private int id;
-    private Date dateCreated;
-    private Date dateCreatedGMT;
-    private Date dateModified;
-    private Date dateModifiedGMT;
+    private LocalDateTime dateCreated;
+    private LocalDateTime dateCreatedGMT;
+    private LocalDateTime dateModified;
+    private LocalDateTime dateModifiedGMT;
     private String src;
     private String name;
     private String alt;
@@ -25,35 +25,35 @@ public class ProductImage {
         this.id = id;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getLocalDateTimeCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setLocalDateTimeCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getDateCreatedGMT() {
+    public LocalDateTime getLocalDateTimeCreatedGMT() {
         return dateCreatedGMT;
     }
 
-    public void setDateCreatedGMT(Date dateCreatedGMT) {
+    public void setLocalDateTimeCreatedGMT(LocalDateTime dateCreatedGMT) {
         this.dateCreatedGMT = dateCreatedGMT;
     }
 
-    public Date getDateModified() {
+    public LocalDateTime getLocalDateTimeModified() {
         return dateModified;
     }
 
-    public void setDateModified(Date dateModified) {
+    public void setLocalDateTimeModified(LocalDateTime dateModified) {
         this.dateModified = dateModified;
     }
 
-    public Date getDateModifiedGMT() {
+    public LocalDateTime getLocalDateTimeModifiedGMT() {
         return dateModifiedGMT;
     }
 
-    public void setDateModifiedGMT(Date dateModifiedGMT) {
+    public void setLocalDateTimeModifiedGMT(LocalDateTime dateModifiedGMT) {
         this.dateModifiedGMT = dateModifiedGMT;
     }
 
