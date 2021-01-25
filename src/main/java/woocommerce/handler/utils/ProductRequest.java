@@ -67,6 +67,15 @@ public class ProductRequest implements IRequest {
         }
     }
 
+    @Override
+    public String PUT(int id, Map<Object, Object> data) {
+        try {
+            return RequestUtils.putRequest(URL, headers, data, ignoreSSLError);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public String POST(String data) {

@@ -12,6 +12,7 @@ import woocommerce.handler.utils.WoocommerceAPIVersion;
 import woocommerce.utils.ReflectionUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author TruongNX25
@@ -106,8 +107,9 @@ public class ProductVariableHandler implements IWoocommerce<ProductVariable> {
     }
 
 
-    public boolean update(int id) {
-        return false;
+    public boolean update(int id, Map<Object, Object> data) {
+        String json = productRequest.PUT(id, data);
+        return ReflectionUtils.jsonStringToProductVariable(json) == null;
     }
 
     public boolean delete(int id) {
