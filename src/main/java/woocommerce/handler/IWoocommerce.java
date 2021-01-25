@@ -1,6 +1,7 @@
 package woocommerce.handler;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IWoocommerce<T> {
     T create(T t);
@@ -9,7 +10,7 @@ public interface IWoocommerce<T> {
 
     List<T> getAll();
 
-    boolean update(int id);
+    boolean update(int id, Map<Object, Object> data);
 
     boolean delete(int id);
 

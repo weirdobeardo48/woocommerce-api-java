@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.TrustAllStrategy;
@@ -119,6 +116,32 @@ public class RequestUtils {
         }
         return responseData;
     }
+
+    public static String putRequest(String URL, Map<String, String> headers, Map<Object, Object> data, boolean ignoreSSLError) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(data);
+        return putRequest(URL, headers, json, ignoreSSLError);
+    }
+
+    public static String putRequest(String URL, Map<String, String> headers, String data, boolean ignoreSSLError) {
+        String responseData = null;
+        HttpPut put = new HttpPut(URL);
+        for (String key : headers.keySet()) {
+            put.addHeader(key, headers.get(key));
+        }
+        try (CloseableHttpClient httpClient = getHttpClient(ignoreSSLError);
+             CloseableHttpResponse response = httpClient.execute(put)) {
+            LOG.debug("Protocol version:" + response.getProtocolVersion());
+            LOG.info("Status code: " + response.getStatusLine().getStatusCode());
+            LOG.debug("Reason Phrase: " + response.getStatusLine().getReasonPhrase());
+            LOG.debug("Status Line: " + response.getStatusLine().toString());
+            responseData = EntityUtils.toString(response.getEntity());
+        } catch (IOException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
+            e.printStackTrace();
+        }
+        return responseData;
+    }
+
 
     static CloseableHttpClient getHttpClient(boolean ignoreSSLError) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         return ignoreSSLError ? HttpClients.custom()
