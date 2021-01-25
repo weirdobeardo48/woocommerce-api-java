@@ -2,7 +2,8 @@ package woocommerce.entity.product;
 
 
 import woocommerce.annotation.JsonElement;
-import woocommerce.annotation.JsonElementType;
+import woocommerce.annotation.TypeOfJsonElement;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,9 +20,9 @@ public abstract class Product {
     private String slug;
     @JsonElement(key = "permalink")
     private String permalink;
-    @JsonElement(key = "date_created")
+    @JsonElement(key = "date_created", type = TypeOfJsonElement.ISO8601_DATETIME)
     private LocalDateTime dateCreated;
-    @JsonElement(key = "date_created_gmt")
+    @JsonElement(key = "date_created_gmt", type = TypeOfJsonElement.ISO8601_DATETIME)
     private LocalDateTime dateCreatedGMT;
     @JsonElement(key = "data_modified")
     private LocalDateTime dateModified;
@@ -44,13 +45,13 @@ public abstract class Product {
     private String regularPrice;
     @JsonElement(key = "sale_price")
     private String salePrice;
-    @JsonElement(key = "date_on_sale_from")
+    @JsonElement(key = "date_on_sale_from", type = TypeOfJsonElement.ISO8601_DATETIME)
     private LocalDateTime dateOnSaleFrom;
-    @JsonElement(key = "date_on_sale_from_gmt")
+    @JsonElement(key = "date_on_sale_from_gmt", type = TypeOfJsonElement.ISO8601_DATETIME)
     private LocalDateTime dateOnSaleFromGMT;
-    @JsonElement(key = "date_on_sale_to")
+    @JsonElement(key = "date_on_sale_to", type = TypeOfJsonElement.ISO8601_DATETIME)
     private LocalDateTime dateOnSaleTo;
-    @JsonElement(key = "date_on_sale_to_gmt")
+    @JsonElement(key = "date_on_sale_to_gmt", type = TypeOfJsonElement.ISO8601_DATETIME)
     private LocalDateTime dateOnSaleToGMT;
     @JsonElement(key = "price_html")
     private String priceHTML;
@@ -58,8 +59,7 @@ public abstract class Product {
     private boolean onSale;
     @JsonElement(key = "purchasable")
     private boolean purchasable;
-    @JsonElement(key = "total_sales")
-    @JsonElementType(type = 2)
+    @JsonElement(key = "total_sales", type = TypeOfJsonElement.INTEGER)
     private Integer totalSales;
     @JsonElement(key = "virtual")
     private boolean virtual;
@@ -81,15 +81,15 @@ public abstract class Product {
     private Integer stockQuantity;
     @JsonElement(key = "stock_status")
     private String stockStatus;
-    @JsonElement(key = "back_orders")
+    @JsonElement(key = "back_orders", type = TypeOfJsonElement.BACKORDERS)
     private String backOrders;
-    @JsonElement(key = "backorders_allowed")
+    @JsonElement(key = "backorders_allowed", type = TypeOfJsonElement.BACKORDERS)
     private boolean backOrdersAllowed;
     @JsonElement(key = "sold_individually")
     private boolean soldIndividually;
     @JsonElement(key = "weight")
     private String weight;
-    @JsonElement(key = "dimensions")
+    @JsonElement(key = "dimensions", type = TypeOfJsonElement.DIMENSION)
     private ProductDimension dimensions;
     @JsonElement(key = "shipping_required")
     private boolean shippingRequired;

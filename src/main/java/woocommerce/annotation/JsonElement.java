@@ -9,4 +9,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface JsonElement {
     String key() default "";
+    TypeOfJsonElement type() default TypeOfJsonElement.NONE;
 }
